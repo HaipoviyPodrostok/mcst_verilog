@@ -1,0 +1,40 @@
+$date
+	Thu Oct  1 12:27:24 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module is_even_tb $end
+$var wire 1 ! t_even_out $end
+$var reg 8 " t_num_in [7:0] $end
+$scope module dut $end
+$var wire 1 ! even_out $end
+$var wire 8 # num_in [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 #
+b0 "
+1!
+$end
+#10000
+0!
+b1 "
+b1 #
+#20000
+1!
+b100 "
+b100 #
+#30000
+0!
+b11111111 "
+b11111111 #
+#40000
