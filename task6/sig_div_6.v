@@ -1,24 +1,23 @@
-module clk_div
-(
-    input   wire    clk,
-    input   wire    reset,
-    output  reg     clk_div
+module clk_divider_6 (
+    input  wire clk,
+    input  wire reset,
+    output reg  clk_out
 );
 
-reg [2:0] counter;
+    reg [1:0] cnt;
 
-always @(posedge clk or posedge reset) begin
-    if (reset == 1'b1) begin
-        clk_div <= 3'h0;
-        counter <= 1'h0;
-    end else begin
-        if (counter == 3'd2) begin
-            counter <= 3'h0;
-            clk_div <= ~clk_div;
+    always @(posedge clk) begin
+        if (reset) begin
+            cnt     <= 2'd0;
+            clk_out <= 1'b0;
         end else begin
-            counter <= counter + 1'b1;
+            if (cnt == 2'd2) begin
+                cnt     <= 2'd0;
+                clk_out <= ~clk_out;
+            end else begin
+                cnt     <= cnt + 1'b1;
+            end
         end
     end
-end
 
 endmodule

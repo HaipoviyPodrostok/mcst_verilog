@@ -1,25 +1,24 @@
-module clk_div
-(
-    input   wire    clk,
-    input   wire    reset,
-    output  reg     clk_div
+module pulse_gen_5 (
+    input  wire clk,
+    input  wire reset,
+    output reg  pulse_out
 );
 
-reg [2:0] counter;
+    reg [2:0] cnt;
 
-always @(posedge clk or posedge reset) begin
-    if (reset == 1'b1) begin
-        clk_div <= 3'd0;
-        counter <= 1'b0;
-    end else begin
-        if (counter == 3'd4) begin
-            counter <= 3'd0;
-            clk_div <= 1'b1;
+    always @(posedge clk) begin
+        if (reset) begin
+            cnt       <= 3'd0;
+            pulse_out <= 1'b0;
         end else begin
-            counter <= counter + 1'b1;
-            clk_div <= 1'b0;
+            if (cnt == 3'd4) begin
+                cnt       <= 3'd0;
+                pulse_out <= 1'b1;
+            end else begin
+                cnt       <= cnt + 1'b1;
+                pulse_out <= 1'b0;
+            end
         end
     end
-end
 
 endmodule
